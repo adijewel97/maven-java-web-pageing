@@ -30,7 +30,7 @@ public class BpblService {
             stmt.setInt(1, start);
             stmt.setInt(2, length);
             stmt.setString(3, sortDir); // DESC
-            stmt.setString(4, sortBy);  // UNITU
+            stmt.setString(4, sortBy);  // UNITUP
             stmt.setString(5, search);
             stmt.setString(6, sumberData);
             stmt.setString(7, tahun);

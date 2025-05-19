@@ -76,6 +76,9 @@ public class BpblController extends HttpServlet {
             orderDir = "DESC";
         }
 
+        logger.info("Page: " + page + ", Length: " + length + ", Start: " + start);
+
+
         List<String> pesanOutput = new ArrayList<>();
         List<Map<String, Object>> data = Collections.emptyList();
         int totalCount = 0;

@@ -1,10 +1,31 @@
-<nav class="nav flex-column">
-    <a class="nav-link" href="index.jsp?page=/views/dashboard/dashboard.jsp">DASHBOARD</a>
-    <a class="nav-link" data-bs-toggle="collapse" href="#collapseMonitoring" role="button" aria-expanded="false" aria-controls="collapseMonitoring">
-        MONITORING
+<nav class="nav flex-column sidebar p-3">
+    <!-- Logo dan Judul -->
+    <!-- <div class="text-center mb-4 bg-white py-3 rounded shadow-sm">
+        <img src="${pageContext.request.contextPath}/assets/img/logo.png"
+             alt="Logo BPBL"
+             style="max-height: 50px;">
+        <div class="fw-bold text-dark mt-2">BPBL</div>
+    </div> -->
+
+    <!-- Navigasi -->
+    <a class="nav-link" href="index.jsp?page=/views/dashboard/dashboard.jsp">
+        <i class="bi bi-speedometer2 me-2"></i> Dashboard
     </a>
-    <div class="collapse ps-3" id="collapseMonitoring">
-        <a class="nav-link" href="index.jsp?page=/views/monitoring/v_mon_prov_upi.jsp">Mon PerProv dan PerUpi</a>
-        <a class="nav-link" href="index.jsp?page=/views/monitoring/v_mon_perpengusul.jsp">Mon PerPengusul</a>
+
+    <a class="nav-link"
+       data-bs-toggle="collapse"
+       href="#collapseMonitoring"
+       role="button"
+       aria-expanded="true"
+       aria-controls="collapseMonitoring">
+        <i class="bi bi-graph-up me-2"></i> Monitoring
+    </a>
+    <div class="collapse ps-3 show" id="collapseMonitoring">
+        <a class="nav-link active" href="index.jsp?page=/views/monitoring/v_mon_perprov_upi.jsp&menu=monitoring-prov-upi">
+            Mon PerProv dan PerUpi
+        </a>
+        <a class="nav-link" href="index.jsp?page=/views/monitoring/v_mon_perpengusul.jsp&menu=monitoring-perpengusul">
+            Mon PerPengusul
+        </a>
     </div>
 </nav>
