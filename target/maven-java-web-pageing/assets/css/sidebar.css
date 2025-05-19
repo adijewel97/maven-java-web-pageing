@@ -20,3 +20,8 @@
     /* background-color: #495057; */
 }
 
+.nav-link.active {
+    background-color: #495057;
+    color: #fff !important;
+    font-weight: bold;
+}

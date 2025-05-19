@@ -42,7 +42,7 @@
 
 <script>
     $(document).ready(function () {
-        const table = $('#bpblTable').DataTable({
+        $('#bpblTable').DataTable({
             responsive: true,
             processing: true,
             serverSide: true,
@@ -72,11 +72,36 @@
                 {data: 'PROVINSI', defaultContent: '-'}
             ],
             searching: false,
-            lengthMenu: [[5, 10, 25, 50, 100], [5, 10, 25, 50, 100]], // ✅ Tambahan ini
-            pageLength: 5, // ✅ Default 10 baris per halaman
+            lengthMenu: [[10, 100, 5000], [10, 100, 5000]],
+            pageLength: 10,
+
+            // ✅ Tambahkan struktur dom agar tombol di atas length menu
+            dom: 'B<"top"l>frtip',
+
+            buttons: [
+                {
+                    extend: 'excelHtml5',
+                    text: 'Export Excel',
+                    titleAttr: 'Export ke Excel',
+                    exportOptions: {
+                        columns: ':visible'
+                    }
+                }
+            ],
+
             language: {
+                lengthMenu: "Tampilkan _MENU_ entri per halaman",
                 emptyTable: "Tidak ada data tersedia",
-                zeroRecords: "Data tidak ditemukan"
+                zeroRecords: "Data tidak ditemukan",
+                info: "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+                infoEmpty: "Menampilkan 0 sampai 0 dari 0 entri",
+                infoFiltered: "(difilter dari total _MAX_ entri)",
+                paginate: {
+                    first: "Pertama",
+                    last: "Terakhir",
+                    next: "Berikutnya",
+                    previous: "Sebelumnya"
+                }
             }
         });
 
