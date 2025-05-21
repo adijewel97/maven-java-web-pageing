@@ -22,7 +22,7 @@ public class BpblService {
         logger.info("Memulai panggilan prosedur Oracle dengan parameter tahun: " + tahun);
         List<Map<String, Object>> result = new ArrayList<>();
 
-        String sql = "{call BPBL_SURVEY.PKG_MON_LAP_BPBLPRASURVEY.S_BPBLPRASURVEY_PROV_DAFTAR_PGS(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+        String sql = "{call BPBL_SURVEY.PKG_MON_LAP_BPBLPRASURVEY.S_BPBLPRASURVEY_DAFTAR_PGS(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 
         try (Connection conn = dataSource.getConnection();
              CallableStatement stmt = conn.prepareCall(sql)) {
@@ -50,8 +50,10 @@ public class BpblService {
                     row.put("ID_KOLEKTIF", rs.getString("ID_KOLEKTIF"));
                     row.put("NAMA_PELANGGAN", rs.getString("NAMA_PELANGGAN"));
                     row.put("UNITUP", rs.getString("UNITUP"));
+                    row.put("KD_PROV", rs.getString("KD_PROV"));
                     row.put("PROVINSI", rs.getString("PROVINSI"));
                     row.put("DATA", rs.getString("DATA"));
+                    row.put("ROW_NUMBER", rs.getString("ROW_NUMBER"));
                     // Tambahkan kolom lain jika diperlukan
                     result.add(row);
                 }

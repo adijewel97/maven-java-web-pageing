@@ -5,7 +5,7 @@ import com.example.service.DbService;
 import com.example.utils.LoggerUtil;
 import com.google.gson.Gson;
 
-import javax.servlet.*;
+import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class BpblController extends HttpServlet {
     private BpblService service;
     private static final Logger logger = LoggerUtil.getLogger(BpblController.class);
-    private Gson gson = new Gson();
+    private final Gson gson = new Gson();
 
     @Override
     public void init() throws ServletException {
@@ -32,93 +32,82 @@ public class BpblController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Ambil parameter DataTables
+        // Ambil parameter dari request
         String drawParam = req.getParameter("draw");
         String startParam = req.getParameter("start");
         String lengthParam = req.getParameter("length");
-        String searchValue = req.getParameter("search[value]");
+        String searchValue = Optional.ofNullable(req.getParameter("search[value]")).orElse("");
         String orderColumnIndex = req.getParameter("order[0][column]");
-        String orderDir = req.getParameter("order[0][dir]");
+        String orderDir = Optional.ofNullable(req.getParameter("order[0][dir]")).orElse("asc");
 
-        // Ambil parameter vtahun dan voption dari request (combo box)
-        String vtahun = req.getParameter("vtahun");
-        String voption = req.getParameter("voption");
+        String vtahun = Optional.ofNullable(req.getParameter("vtahun")).filter(s -> !s.isEmpty()).orElse("2025");
+        String voption = Optional.ofNullable(req.getParameter("voption")).filter(s -> !s.isEmpty()).orElse("PROVINSI");
+        String vdata = req.getParameter("vdata");
+        boolean all = "true".equalsIgnoreCase(req.getParameter("all"));
 
-        // Beri nilai default jika null
-        if (vtahun == null || vtahun.isEmpty()) {
-            vtahun = "2025";
-        }
-        if (voption == null || voption.isEmpty()) {
-            voption = "PROVINSI";
-        }
-
-        int draw = (drawParam != null) ? Integer.parseInt(drawParam) : 1;
-        int start = (startParam != null) ? Integer.parseInt(startParam) : 0;
-        int length = (lengthParam != null) ? Integer.parseInt(lengthParam) : 10;
-
-        // Konversi start ke page (1-based)
+        int draw = parseIntOrDefault(drawParam, 1);
+        int start = parseIntOrDefault(startParam, 0);
+        int length = parseIntOrDefault(lengthParam, 10);
         int page = (start / length) + 1;
 
-        // Default sorting column (ubah sesuai kolom di DB/prosedur)
-        String[] columns = {"DATA", "ID_KOLEKTIF", "IDURUT_BPBL", "TANGGAL_USULAN", "KODE_PENGUSUL", "NAMA_PELANGGAN", "NIK", "ALAMAT", "KD_PROV", "KD_PROV_USULAN", "PROVINSI"};
-        String orderBy = "UNITUP"; // default
+        // Jika "all" diminta, ubah paging agar ambil semua data dari page 1
+        if (all) {
+            page = 1;
+            length = Integer.MAX_VALUE; //10000; //  GUNAKAN BATAS AMAN, JANGAN Integer.MAX_VALUE
+        }
+
+        logger.info("Halaman yang dipilih: " + page + ", start: " + start + ", length: " + length + ", all: " + all);
+
+        // Penentuan kolom pengurutan default
+        String[] columns = {
+            "DATA", "ID_KOLEKTIF", "IDURUT_BPBL", "TANGGAL_USULAN", "KODE_PENGUSUL",
+            "NAMA_PELANGGAN", "NIK", "ALAMAT", "UNITUPI", "KD_PROV",
+            "KD_PROV_USULAN", "PROVINSI"
+        };
+
+        String orderBy = switch (voption.toUpperCase()) {
+            case "PROVINSI" -> "KD_PROV";
+            case "UPI" -> "UNITUPI";
+            case "PENGUSUL" -> "KD_PROV";
+            default -> "UNITUP";
+        };
+
         if (orderColumnIndex != null) {
             try {
                 int colIndex = Integer.parseInt(orderColumnIndex);
                 if (colIndex >= 0 && colIndex < columns.length) {
                     orderBy = columns[colIndex];
                 }
-            } catch (NumberFormatException e) {
-                // fallback ke default orderBy
-            }
-        }
-        if (orderDir == null || (!orderDir.equalsIgnoreCase("asc") && !orderDir.equalsIgnoreCase("desc"))) {
-            orderDir = "DESC";
+            } catch (NumberFormatException ignored) {}
         }
 
-        logger.info("Page: " + page + ", Length: " + length + ", Start: " + start);
+        orderDir = orderDir.equalsIgnoreCase("desc") ? "DESC" : "ASC";
 
-
-        List<String> pesanOutput = new ArrayList<>();
         List<Map<String, Object>> data = Collections.emptyList();
         int totalCount = 0;
 
         try {
-            // Panggil service dengan paging & sorting
+            List<String> pesanOutput = new ArrayList<>();
             data = service.getBpblData(
                 page, length,
-                orderDir,
-                orderBy,
-                searchValue != null ? searchValue : "",
+                orderDir, orderBy,
+                searchValue,
                 "SEMUA",
-                vtahun,             // vtahun dari parameter combo
-                "TOTAL_SUMBER",
-                voption,            // voption dari parameter combo
+                vtahun,
+                vdata,
+                voption,
                 "SEMUA",
                 pesanOutput
             );
 
-            // Ambil total_count dari hasil (misal total_count di field TOTAL_COUNT dari baris pertama)
             if (!data.isEmpty()) {
                 Object totalCountObj = data.get(0).get("TOTAL_COUNT");
-                if (totalCountObj instanceof Number) {
-                    totalCount = ((Number) totalCountObj).intValue();
-                } else if (totalCountObj != null) {
-                    try {
-                        totalCount = Integer.parseInt(totalCountObj.toString());
-                    } catch (NumberFormatException ex) {
-                        totalCount = data.size();
-                    }
-                } else {
-                    totalCount = data.size();
-                }
+                totalCount = parseTotalCount(totalCountObj, data.size());
             }
-
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Gagal mendapatkan data", e);
         }
 
-        // Susun response JSON untuk DataTables
         Map<String, Object> jsonResponse = new HashMap<>();
         jsonResponse.put("draw", draw);
         jsonResponse.put("recordsTotal", totalCount);
@@ -126,9 +115,27 @@ public class BpblController extends HttpServlet {
         jsonResponse.put("data", data);
 
         resp.setContentType("application/json");
-        PrintWriter out = resp.getWriter();
-        out.print(gson.toJson(jsonResponse));
-        out.flush();
+        try (PrintWriter out = resp.getWriter()) {
+            out.print(gson.toJson(jsonResponse));
+        }
     }
 
+    private int parseIntOrDefault(String value, int defaultValue) {
+        try {
+            return value != null ? Integer.parseInt(value) : defaultValue;
+        } catch (NumberFormatException e) {
+            return defaultValue;
+        }
+    }
+
+    private int parseTotalCount(Object totalCountObj, int fallback) {
+        if (totalCountObj instanceof Number) {
+            return ((Number) totalCountObj).intValue();
+        } else if (totalCountObj != null) {
+            try {
+                return Integer.parseInt(totalCountObj.toString());
+            } catch (NumberFormatException ignored) {}
+        }
+        return fallback;
+    }
 }

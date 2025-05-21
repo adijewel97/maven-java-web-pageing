@@ -4,3 +4,4 @@ com\example\controller\BpblController.class
 com\example\service\DbService.class
 com\example\utils\LoggerUtil.class
 com\example\utils\LoggerUtil$1.class
+com\example\controller\BpblController_awal.class
