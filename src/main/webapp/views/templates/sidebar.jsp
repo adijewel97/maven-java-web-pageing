@@ -17,6 +17,10 @@
        href="index.jsp?page=/views/monitoring/v_mon_perprov_upi.jsp&menu=monitoring-prov-upi">
         Mon PerProv dan PerUpi
     </a>
+    <a class="nav-link <%= "Daftar-prov-upi".equals(request.getParameter("menu")) ? "active" : "" %>"
+       href="index.jsp?page=/views/monitoring/v_dft_perprov_upi.jsp&menu=Daftar-prov-upi">
+        Daftar PerProv dan PerUpi
+    </a>
     <a class="nav-link <%= "monitoring-perpengusul".equals(request.getParameter("menu")) ? "active" : "" %>"
        href="index.jsp?page=/views/monitoring/v_mon_perpengusul.jsp&menu=monitoring-perpengusul">
         Mon PerPengusul
