@@ -44,6 +44,7 @@ public class BpblController_awal extends HttpServlet {
         String vtahun  = req.getParameter("vtahun");
         String voption = req.getParameter("voption");
         String vdata   = req.getParameter("vdata");
+        String vidkolektif   = req.getParameter("vidkolektif");
 
         // Beri nilai default jika null
         if (vtahun == null || vtahun.isEmpty()) {
@@ -114,6 +115,7 @@ public class BpblController_awal extends HttpServlet {
                 vdata,
                 voption,            // voption dari parameter combo
                 "SEMUA",
+                vidkolektif,
                 pesanOutput
             );
 

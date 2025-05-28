@@ -12,4 +12,14 @@
         <servlet-name>BpblController</servlet-name>
         <url-pattern>/bpbl</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>MonPerProvPerUpiController</servlet-name>
+        <servlet-class>com.example.controller.MonPerProvPerUpiController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MonPerProvPerUpiController</servlet-name>
+        <url-pattern>/monperprovperupi</url-pattern>
+    </servlet-mapping>
+
 </web-app>

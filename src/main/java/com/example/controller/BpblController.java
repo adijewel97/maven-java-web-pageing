@@ -63,10 +63,13 @@ public class BpblController extends HttpServlet {
         String orderColumnIndex = req.getParameter("order[0][column]");
         String orderDir = Optional.ofNullable(req.getParameter("order[0][dir]")).orElse("asc");
 
-        String vtahun = Optional.ofNullable(req.getParameter("vtahun")).filter(s -> !s.isEmpty()).orElse("2025");
-        String voption = Optional.ofNullable(req.getParameter("voption")).filter(s -> !s.isEmpty()).orElse("PROVINSI");
-        String vdata = req.getParameter("vdata");
-        boolean all = "true".equalsIgnoreCase(req.getParameter("all"));
+        String vkd_sumberdata = req.getParameter("vkd_sumberdata");
+        String vtahun         = Optional.ofNullable(req.getParameter("vtahun")).filter(s -> !s.isEmpty()).orElse("2025");
+        String vdata          = req.getParameter("vdata");
+        String voption        = Optional.ofNullable(req.getParameter("voption")).filter(s -> !s.isEmpty()).orElse("PROVINSI");
+        String vidoption      = req.getParameter("vidoption");
+        String vidkolektif    = req.getParameter("vidkolektif");
+        boolean all           = "true".equalsIgnoreCase(req.getParameter("all"));
 
         int draw = parseIntOrDefault(drawParam, 1);
         int start = parseIntOrDefault(startParam, 0);
@@ -85,8 +88,10 @@ public class BpblController extends HttpServlet {
         logger.info("page: " + page);
         logger.info("searchValue: " + searchValue);
         logger.info("vtahun: " + vtahun);
-        logger.info("voption: " + voption);
         logger.info("vdata: " + vdata);
+        logger.info("voption: " + voption);
+        logger.info("vidoption: " + vidoption);
+        logger.info("vidkolektif: " + vidkolektif);
         logger.info("all: " + all);
         logger.info("orderColumnIndex: " + orderColumnIndex);
         logger.info("orderDir: " + orderDir);
@@ -141,7 +146,7 @@ public class BpblController extends HttpServlet {
             "USERID_KOREKSI", 
             "NAMA_FILE_KOREKSI", 
             "PATH_FILE_KOREKSI", 
-            "ROW_NUMBER",
+            "ROW_NUMBER", 
             "USERID_VERIFIKASI", 
             "STATUS_VERIFIKASI", 
             "TGL_VERIFIKASI"
@@ -185,11 +190,12 @@ public class BpblController extends HttpServlet {
                 page, length,
                 orderDir, orderBy,
                 searchValue,
-                "SEMUA",
+                vkd_sumberdata,
                 vtahun,
                 vdata,
                 voption,
-                "SEMUA",
+                vidoption,
+                vidkolektif,
                 pesanOutput
             );
 

@@ -16,13 +16,14 @@ public class BpblService {
     }
     
     public List<Map<String, Object>> getBpblData(int start, int length, String sortBy, String sortDir, String search,
-                                                 String sumberData, String tahun, String data, String option, String idOption, 
+                                                 String sumberData, String tahun, String data, String option
+                                                 , String idOption, String idkolektif,
                                                  List<String> pesanOutput) {
 
         logger.info("Memulai panggilan prosedur Oracle dengan parameter tahun: " + tahun);
         List<Map<String, Object>> result = new ArrayList<>();
 
-        String sql = "{call BPBL_SURVEY.PKG_MON_LAP_BPBLPRASURVEY.S_BPBLPRASURVEY_DAFTAR_PGS(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+        String sql = "{call BPBL_SURVEY.PKG_MON_LAP_BPBLPRASURVEY.S_BPBLPRASURVEY_DAFTAR_PGS(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 
         try (Connection conn = dataSource.getConnection();
              CallableStatement stmt = conn.prepareCall(sql)) {
@@ -37,14 +38,15 @@ public class BpblService {
             stmt.setString(8, data);
             stmt.setString(9, option);
             stmt.setString(10, idOption);
-            stmt.registerOutParameter(11, OracleTypes.CURSOR); // out_data
-            stmt.registerOutParameter(12, Types.VARCHAR);      // pesan
+            stmt.setString(11, idkolektif);
+            stmt.registerOutParameter(12, OracleTypes.CURSOR); // out_data
+            stmt.registerOutParameter(13, Types.VARCHAR);      // pesan
 
             stmt.execute();
             logger.info("Prosedur Utama berhasil dieksekusi");
 
 
-            try (ResultSet rs = (ResultSet) stmt.getObject(11)) {
+            try (ResultSet rs = (ResultSet) stmt.getObject(12)) {
                 // Chek filed yg di tkirim dari backend
                 // ResultSetMetaData meta = rs.getMetaData();
                 // int columnCount = meta.getColumnCount();
@@ -84,8 +86,7 @@ public class BpblService {
                     row.put("NAMA_UNITAP", rs.getString("NAMA_UNITAP"));
                     row.put("UNITUP", rs.getString("UNITUP"));
                     row.put("NAMA_UNITUP", rs.getString("NAMA_UNITUP"));
-                    String statusStr = rs.getString("STATUS");
-                    row.put("STATUS", (statusStr != null && !statusStr.isEmpty()) ? Integer.parseInt(statusStr) : 0);
+                    row.put("STATUS_UPLOAD", rs.getString("STATUS_UPLOAD"));
                     row.put("USER_ID", rs.getString("USER_ID"));
                     row.put("TGL_UPLOAD", rs.getString("TGL_UPLOAD"));
                     row.put("NAMA_FILE_UPLOAD", rs.getString("NAMA_FILE_UPLOAD"));
@@ -102,16 +103,16 @@ public class BpblService {
                     row.put("USERID_KOREKSI", rs.getString("USERID_KOREKSI"));
                     row.put("NAMA_FILE_KOREKSI", rs.getString("NAMA_FILE_KOREKSI"));
                     row.put("PATH_FILE_KOREKSI", rs.getString("PATH_FILE_KOREKSI"));
-                    row.put("ROW_NUMBER", rs.getString("ROW_NUMBER"));
                     row.put("USERID_VERIFIKASI", rs.getString("USERID_VERIFIKASI"));
                     row.put("STATUS_VERIFIKASI", rs.getString("STATUS_VERIFIKASI"));
                     row.put("TGL_VERIFIKASI", rs.getString("TGL_VERIFIKASI"));
+                    row.put("ROW_NUMBER", rs.getString("ROW_NUMBER"));
                     // Tambahkan kolom lain jika diperlukan
                     result.add(row);
                 }
             }
 
-            String pesan = stmt.getString(12);
+            String pesan = stmt.getString(13);
             pesanOutput.add(pesan);
 
         } catch (SQLException e) {

@@ -14,11 +14,15 @@
 
 <div class="collapse ps-3 show" id="collapseMonitoring">
     <a class="nav-link <%= "monitoring-prov-upi".equals(request.getParameter("menu")) ? "active" : "" %>"
-       href="index.jsp?page=/views/monitoring/v_mon_perprov_upi.jsp&menu=monitoring-prov-upi">
+       href="index.jsp?page=/views/monitoring/v1a_mon_perprov_upi.jsp&menu=monitoring-prov-upi">
         Mon PerProv dan PerUpi
     </a>
+    <a class="nav-link <%= "Daftar-prov-upi".equals(request.getParameter("menu")) ? "active" : "" %>"
+       href="index.jsp?page=/views/monitoring/v2a_dft_perprov_upi.jsp&menu=Daftar-prov-upi">
+        Daftar PerProv dan PerUpi
+    </a>
     <a class="nav-link <%= "monitoring-perpengusul".equals(request.getParameter("menu")) ? "active" : "" %>"
-       href="index.jsp?page=/views/monitoring/v_mon_perpengusul.jsp&menu=monitoring-perpengusul">
+       href="index.jsp?page=/views/monitoring/v1b_mon_perpengusul.jsp&menu=monitoring-perpengusul">
         Mon PerPengusul
     </a>
 </div>

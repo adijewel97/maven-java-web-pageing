@@ -35,7 +35,7 @@ public class BpblServiceTest {
 
             List<Map<String, Object>> data = service.getBpblData(
                 // 1,  10, "UNITUPI", "ASC", "", "SEMUA", "2025", "TOTAL", "PROVINSI", "SEMUA", pesanOutput);
-                  1, 5, "DESC", "UNITUP", "", "SEMUA", "2025","TOTAL_SUMBER", "PROVINSI", "SEMUA",  pesanOutput);
+                  1, 5, "DESC", "UNITUP", "", "SEMUA", "2025","TOTAL_SUMBER", "PROVINSI", "SEMUA", "KOL125", pesanOutput);
 
             logger.info("Jumlah data yang didapat: " + data.size());
             for (Map<String, Object> row : data) {

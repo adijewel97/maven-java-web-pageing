@@ -1,11 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="pt-4 px-4">
-    <h2 class="page-title">Data Pelanggan BPBL Per Provinsi / UPI</h2>
+    <h2 class="page-title">Daftar Pelanggan BPBL Per Provinsi / UPI</h2>
 
     <div class="container mt-4">
         <div class="form-monitoring">
-            <h5 class="section-title">Monitoring Temuan Baru Per UPI / Provinsi</h5>
+            <h5 class="section-title">Daftar Temuan Baru Per UPI / Provinsi</h5>
 
             <form id="form-monitoring">
                 <div class="row g-3 mb-3">
@@ -54,19 +54,19 @@
 
             <!-- Menggunakan class dari CSS external -->
             <div class="datatable-container">
-                <table id="bpblTable" class="datatable-main">
+                <table id="table_mondaf_provupi" class="datatable-main">
                     <thead>
                         <tr>
-                            <th class="col-no">NO</th> 
+                            <th>No</th>
                             <!-- <th>TOTAL_COUNT</th>  -->
                             <th>DATA</th> 
                             <th>ID_KOLEKTIF</th> 
                             <th>IDURUT_BPBL</th> 
                             <th>TANGGAL_USULAN</th> 
                             <th>KODE_PENGUSUL</th> 
-                            <th class="col-nama-pelanggan">NAMA_PELANGGAN</th> 
+                            <th>NAMA_PELANGGAN</th> 
                             <th>NIK</th> 
-                            <th class="col-alamat">ALAMAT</th> 
+                            <th>ALAMAT</th> 
                             <th>KD_PROV</th> 
                             <th>KD_PROV_USULAN</th> 
                             <th>PROVINSI</th> 
@@ -89,27 +89,27 @@
                             <th>NAMA_UNITAP</th> 
                             <th>UNITUP</th> 
                             <th>NAMA_UNITUP</th> 
-                            <th class="col-status">STATUS</th> 
+                            <th>STATUS_UPLOAD</th> 
                             <th>USER_ID</th> 
                             <th>TGL_UPLOAD</th> 
-                            <th class="col-file">NAMA_FILE_UPLOAD</th> 
+                            <th>NAMA_FILE_UPLOAD</th> 
                             <th>PATH_FILE</th> 
-                            <th class="col-file">DOKUMEN_UPLOAD</th> 
+                            <th>DOKUMEN_UPLOAD</th> 
                             <th>PATH_DOKUMEN</th> 
                             <th>SURAT_VALDES</th> 
                             <th>PRIORITAS</th> 
                             <th>VERIFIKASI_DJK</th> 
                             <th>SUMBER_DATA</th> 
-                            <th class="col-keterangan">KETERANGAN</th> 
-                            <th class="col-tahun">TAHUN</th> 
+                            <th>KETERANGAN</th> 
+                            <th>TAHUN</th> 
                             <th>TGL_KOREKSI</th> 
                             <th>USERID_KOREKSI</th> 
-                            <th class="col-file">NAMA_FILE_KOREKSI</th> 
+                            <th>NAMA_FILE_KOREKSI</th> 
                             <th>PATH_FILE_KOREKSI</th> 
-                            <!-- <th>ROW_NUMBER</th>  -->
                             <th>USERID_VERIFIKASI</th> 
                             <th>STATUS_VERIFIKASI</th> 
                             <th>TGL_VERIFIKASI</th> 
+                            <!-- <th>ROW_NUMBER</th>  -->
                         </tr>
                     </thead>
                     <tbody>
@@ -181,7 +181,7 @@
             }
         });
         
-        var table = $('#bpblTable').DataTable({
+        var table = $('#table_mondaf_provupi').DataTable({
             processing: true,
             serverSide: true,
             scrollX: true,
@@ -212,18 +212,58 @@
                     }
                 },
                 ...[
-                    // 'TOTAL_COUNT',
-                    'DATA', 'ID_KOLEKTIF', 'IDURUT_BPBL', 'TANGGAL_USULAN', 'KODE_PENGUSUL',
-                    'NAMA_PELANGGAN', 'NIK', 'ALAMAT', 'KD_PROV', 'KD_PROV_USULAN', 'PROVINSI',
-                    'PROVINSI_USULAN', 'KD_KAB', 'KD_KAB_USULAN', 'KABUPATENKOTA', 'KABUPATENKOTA_USULAN',
-                    'KD_KEC', 'KD_KEC_USULAN', 'KECAMATAN', 'KECAMATAN_USULAN', 'KD_KEL', 'KD_KEL_USULAN',
-                    'DESAKELURAHAN', 'DESAKELURAHAN_USULAN', 'UNITUPI', 'NAMA_UNITUPI', 'UNITAP', 'NAMA_UNITAP',
-                    'UNITUP', 'NAMA_UNITUP', 'STATUS', 'USER_ID', 'TGL_UPLOAD', 'NAMA_FILE_UPLOAD',
-                    'PATH_FILE', 'DOKUMEN_UPLOAD', 'PATH_DOKUMEN', 'SURAT_VALDES', 'PRIORITAS',
-                    'VERIFIKASI_DJK', 'SUMBER_DATA', 'KETERANGAN', 'TAHUN', 'TGL_KOREKSI',
-                    'USERID_KOREKSI', 'NAMA_FILE_KOREKSI', 'PATH_FILE_KOREKSI',
-                    // , 'ROW_NUMBER'
-                    "USERID_VERIFIKASI", "STATUS_VERIFIKASI", "TGL_VERIFIKASI"
+                    // "TOTAL_COUNT", 
+                    "DATA", 
+                    "ID_KOLEKTIF", 
+                    "IDURUT_BPBL", 
+                    "TANGGAL_USULAN", 
+                    "KODE_PENGUSUL", 
+                    "NAMA_PELANGGAN", 
+                    "NIK", 
+                    "ALAMAT", 
+                    "KD_PROV", 
+                    "KD_PROV_USULAN", 
+                    "PROVINSI", 
+                    "PROVINSI_USULAN", 
+                    "KD_KAB", 
+                    "KD_KAB_USULAN", 
+                    "KABUPATENKOTA", 
+                    "KABUPATENKOTA_USULAN", 
+                    "KD_KEC", 
+                    "KD_KEC_USULAN", 
+                    "KECAMATAN", 
+                    "KECAMATAN_USULAN", 
+                    "KD_KEL", 
+                    "KD_KEL_USULAN", 
+                    "DESAKELURAHAN", 
+                    "DESAKELURAHAN_USULAN", 
+                    "UNITUPI", 
+                    "NAMA_UNITUPI", 
+                    "UNITAP", 
+                    "NAMA_UNITAP", 
+                    "UNITUP", 
+                    "NAMA_UNITUP", 
+                    "STATUS_UPLOAD", 
+                    "USER_ID", 
+                    "TGL_UPLOAD", 
+                    "NAMA_FILE_UPLOAD", 
+                    "PATH_FILE", 
+                    "DOKUMEN_UPLOAD", 
+                    "PATH_DOKUMEN", 
+                    "SURAT_VALDES", 
+                    "PRIORITAS", 
+                    "VERIFIKASI_DJK", 
+                    "SUMBER_DATA", 
+                    "KETERANGAN", 
+                    "TAHUN", 
+                    "TGL_KOREKSI", 
+                    "USERID_KOREKSI", 
+                    "NAMA_FILE_KOREKSI", 
+                    "PATH_FILE_KOREKSI", 
+                    "USERID_VERIFIKASI", 
+                    "STATUS_VERIFIKASI", 
+                    "TGL_VERIFIKASI", 
+                    // "ROW_NUMBER"
                 ].map(field => ({
                     data: field,
                     defaultContent: '-',
@@ -305,7 +345,7 @@
                 const allData = json.data || [];
 
                 const headers = {
-                    'NO': '',
+                    // 'TOTAL_COUNT': '',
                     'DATA': '',
                     'ID_KOLEKTIF': '',
                     'IDURUT_BPBL': '',
@@ -336,7 +376,7 @@
                     'NAMA_UNITAP': '',
                     'UNITUP': '',
                     'NAMA_UNITUP': '',
-                    'STATUS': '',
+                    'STATUS_UPLOAD': '',
                     'USER_ID': '',
                     'TGL_UPLOAD': '',
                     'NAMA_FILE_UPLOAD': '',
@@ -356,6 +396,7 @@
                     'USERID_VERIFIKASI': '',
                     'STATUS_VERIFIKASI': '',
                     'TGL_VERIFIKASI': '',
+                    // 'ROW_NUMBER': ''
                 };
 
                 const formattedData = allData.length > 0
