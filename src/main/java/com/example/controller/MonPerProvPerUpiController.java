@@ -56,6 +56,7 @@ public class MonPerProvPerUpiController extends HttpServlet {
     private void prosesMonPerProvPerUpi(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String vkd_sumberdata = req.getParameter("vkd_sumberdata");
         String vtahun = req.getParameter("vtahun");
+        int vkode;
 
         // WAJIB untuk DataTables server-side
         int draw = Integer.parseInt(req.getParameter("draw") != null ? req.getParameter("draw") : "1");
@@ -67,19 +68,24 @@ public class MonPerProvPerUpiController extends HttpServlet {
         int totalCount = 0;
         String pesan;
 
-        try {
+       try {
             List<String> pesanOutput = new ArrayList<>();
             data = service.getDataMPerProvPerUpi(vkd_sumberdata, vtahun, pesanOutput);
 
-            totalCount = data.size(); // Atau ambil dari COUNT query kalau ada paging backend
-
-            pesan = pesanOutput.isEmpty() ? "" : pesanOutput.get(0);
-        } catch (ArithmeticException ae) {
-            logger.log(Level.SEVERE, "Kesalahan perhitungan: pembagian dengan nol.", ae);
-            pesan = "Kesalahan pembagian dengan nol dalam data.";
+            String pesanRaw = pesanOutput.isEmpty() ? "" : pesanOutput.get(0).toLowerCase().trim();
+            if (pesanRaw.contains("kesalahan")) {
+                vkode = 402;
+                pesan = "Error:"+pesanOutput.get(0);
+                data = new ArrayList<>();
+            } else {
+                totalCount = data.size();
+                vkode = 200;
+                pesan = "Sukses: Tampikan data";
+            }
         } catch (Exception e) {
-            logger.log(Level.SEVERE, "Gagal mendapatkan data: " + e.getMessage(), e);
-            pesan = "Terjadi kesalahan: " + e.getMessage();
+            logger.log(Level.SEVERE, "Error: Gagal mendapatkan data: " + e.getMessage(), e);
+            vkode = 402;
+            pesan = "Error: Terjadi kesalahan: " + e.getMessage();
         }
 
         // Format JSON sesuai DataTables server-side
@@ -89,7 +95,9 @@ public class MonPerProvPerUpiController extends HttpServlet {
         jsonResponse.put("recordsFiltered", totalCount); // WAJIB
         jsonResponse.put("data", data); // WAJIB
         jsonResponse.put("status", "success");
+        jsonResponse.put("kode", vkode);
         jsonResponse.put("pesan", pesan);
+
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");

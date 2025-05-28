@@ -218,6 +218,7 @@
             },
             error: function (xhr, status, error) {
                 console.error('Gagal mengambil data combo sumber data:', error);
+                alert('Gagal mengambil data combo sumber data:', error);
             }
         });
 
@@ -276,7 +277,7 @@
                     const cellValue  = data[columnName];
                     const vidkd_sumberdata  = $('#selectsumberdata').val();
                     const vidjenis          = $('#jenis').val();
-
+                        
                     // Tambahkan event klik seperti sebelumnya
                     const allowedColumns = ['KODE', 'NAMA', 'TAHUN', 'TARGET', 'SUMBER_DATA','PERSEN_DATAVERIFIKASI','PERSEN_TARGET'];
                     if (!allowedColumns.includes(columnName) && (!isNaN(cellValue) && Number(cellValue) > 0)) {
@@ -287,14 +288,27 @@
                         }).on('click', function () {
                             $('#dataModalLabel').text('Detail: ' + columnName);
 
+                        if (data.URUT == 1) {
+                            xvtahun      = data.TAHUN,
+                            xvidoption   = data.KODE;
+                            xvidkolektif = data.kolektif;
+                        } 
+                        else  if (data.URUT == 2) {
+                            xvtahun      = $('#selectTahun').val(),
+                            xvidoption   = '';
+                            xvidkolektif = '';
+                        }
+
                         detailFilterParams = {
+                            vidurut: data.URUT,
                             vkd_sumberdata: data.SUMBER_DATA == 'DAPIL/PEMDA' ? '' : $('#selectsumberdata').val(),
-                            vtahun: data.TAHUN,
+                            vtahun: xvtahun,
                             vdata: columnName,
                             voption: $('#jenis').val(),
-                            vidoption: data.KODE,
-                            vidkolektif: data.kolektif
+                            vidoption: xvidoption,
+                            vidkolektif: xvidkolektif
                         };
+                        console.log(detailFilterParams);
 
                         $('#dataModal').modal('show');
                         });
@@ -305,7 +319,11 @@
             buttons: [
                 {
                     extend: 'excel',
-                    title: 'Daftar BPBL',
+                    title: function () {
+                        const jenis = $('#jenis').val() || 'JENIS';
+                        const tahun = $('#selectTahun').val() || 'TAHUN';
+                        return 'REKAP_BPBL_' + jenis + '_' + tahun;
+                        },
                     className: 'd-none',
                     exportOptions: {
                         // columns: ':visible'

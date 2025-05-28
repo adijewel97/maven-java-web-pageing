@@ -218,6 +218,7 @@
             },
             error: function (xhr, status, error) {
                 console.error('Gagal mengambil data combo sumber data:', error);
+                alert('Gagal mengambil data combo sumber data:', error);
             }
         });
 
@@ -231,6 +232,7 @@
             ajax: {
                 url: '<%= request.getContextPath() %>/monperprovperupi',
                 type: 'POST',
+                timeout: 10000, // 20 detik
                 data: function (d) {
                     d.vkd_sumberdata = $('#selectsumberdata').val();
                     d.vtahun         = $('#selectTahun').val();
@@ -243,6 +245,12 @@
                     console.error('Status:', xhr.status);
                     console.error('Error thrown:', error);
                     console.error('Response:', xhr.responseText);
+
+                    if (error === 'timeout') {
+                        alert('Permintaan data melebihi waktu tunggu 10 detik. Silakan periksa koneksi atau coba lagi nanti.');
+                    } else {
+                        alert('Terjadi kesalahan saat memuat data: ' + error);
+                    }
                 }
             },
             columns: [
