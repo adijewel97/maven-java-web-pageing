@@ -51,6 +51,7 @@
                             <th>UNITUP</th> 
                             <th>NAMA_UNITUP</th> 
                             <th>STATUS_UPLOAD</th> 
+                            <th>STATUS_DATA</th> 
                             <th>USER_ID</th> 
                             <th>TGL_UPLOAD</th> 
                             <th>NAMA_FILE_UPLOAD</th> 
@@ -70,6 +71,7 @@
                             <th>USERID_VERIFIKASI</th> 
                             <th>STATUS_VERIFIKASI</th> 
                             <th>TGL_VERIFIKASI</th> 
+                            <th>STATUS_CUTOFF</th> 
                             <!-- <th>ROW_NUMBER</th>  -->
                         </tr>
                     </thead>
@@ -361,7 +363,7 @@
         $('#dataModal').on('shown.bs.modal', function () {
             if ($.fn.DataTable.isDataTable('#table_mondaf_provupi')) {
                 $('#table_mondaf_provupi').DataTable().clear().destroy();
-                $('#table_mondaf_provupi').empty();
+                // $('#table_mondaf_provupi').empty();
             }
 
             console.log('parameter :'+detailFilterParams);
@@ -422,6 +424,7 @@
                                 "UNITUP", 
                                 "NAMA_UNITUP", 
                                 "STATUS_UPLOAD", 
+                                "STATUS_DATA", 
                                 "USER_ID", 
                                 "TGL_UPLOAD", 
                                 "NAMA_FILE_UPLOAD", 
@@ -441,7 +444,8 @@
                                 "USERID_VERIFIKASI", 
                                 "STATUS_VERIFIKASI", 
                                 "TGL_VERIFIKASI", 
-                                // "ROW_NUMBER"
+                                "STATUS_CUTOFF", 
+                                // "ROW_NUMBER", 
                             ].map(field => ({
                                 data: field,
                                 defaultContent: '-',
@@ -507,6 +511,7 @@
                 const allData = json.data || [];
 
                 const headers = {
+                    'NO': '',
                     // 'TOTAL_COUNT': '',
                     'DATA': '',
                     'ID_KOLEKTIF': '',
@@ -539,6 +544,7 @@
                     'UNITUP': '',
                     'NAMA_UNITUP': '',
                     'STATUS_UPLOAD': '',
+                    'STATUS_DATA': '',
                     'USER_ID': '',
                     'TGL_UPLOAD': '',
                     'NAMA_FILE_UPLOAD': '',
@@ -558,6 +564,7 @@
                     'USERID_VERIFIKASI': '',
                     'STATUS_VERIFIKASI': '',
                     'TGL_VERIFIKASI': '',
+                    'STATUS_CUTOFF': '',
                     // 'ROW_NUMBER': ''
                 };
 

@@ -1,0 +1,68 @@
+2025-05-29 00:27:41.480 - INFO: DEBUG: act = handleGetsumberdata
+2025-05-29 00:27:41.482 - INFO: DEBUG: act = null
+2025-05-29 00:27:41.482 - INFO: DEBUG: act = handleGetJenisLaporan
+2025-05-29 00:27:41.491 - INFO: vkd_sumberdata: 
+2025-05-29 00:27:41.492 - INFO: vtahun: 2025
+2025-05-29 00:33:16.727 - INFO: DEBUG: act = handleGetJenisLaporan
+2025-05-29 00:33:16.729 - INFO: DEBUG: act = handleGetsumberdata
+2025-05-29 00:33:16.745 - INFO: DEBUG: act = null
+2025-05-29 00:33:16.746 - INFO: vkd_sumberdata: 
+2025-05-29 00:33:16.746 - INFO: vtahun: 2025
+2025-05-29 00:33:38.057 - INFO: DEBUG: act = handleGetJenisLaporan
+2025-05-29 00:33:38.061 - INFO: DEBUG: act = handleGetsumberdata
+2025-05-29 00:33:38.062 - INFO: DEBUG: act = null
+2025-05-29 00:33:38.063 - INFO: vkd_sumberdata: 
+2025-05-29 00:33:38.064 - INFO: vtahun: 2025
+2025-05-29 00:33:41.056 - INFO: DEBUG: act = null
+2025-05-29 00:33:41.057 - INFO: vkd_sumberdata: SEMUA
+2025-05-29 00:33:41.057 - INFO: vtahun: 2025
+2025-05-29 00:33:49.878 - INFO: DEBUG: act = null
+2025-05-29 00:33:49.879 - INFO: vkd_sumberdata: SEMUA
+2025-05-29 00:33:49.879 - INFO: vtahun: 2025
+2025-05-29 00:33:52.533 - INFO: DEBUG: act = null
+2025-05-29 00:33:52.534 - INFO: vkd_sumberdata: SEMUA
+2025-05-29 00:33:52.534 - INFO: vtahun: 2025
+2025-05-29 00:33:55.229 - INFO: DEBUG: act = null
+2025-05-29 00:33:55.230 - INFO: vkd_sumberdata: SEMUA
+2025-05-29 00:33:55.230 - INFO: vtahun: 2025
+2025-05-29 00:33:58.469 - INFO: DEBUG: act = null
+2025-05-29 00:33:58.470 - INFO: vkd_sumberdata: SEMUA
+2025-05-29 00:33:58.470 - INFO: vtahun: 2025
+2025-05-29 00:33:59.291 - INFO: DEBUG: act = null
+2025-05-29 00:33:59.292 - INFO: vkd_sumberdata: SEMUA
+2025-05-29 00:33:59.292 - INFO: vtahun: 2025
+2025-05-29 00:34:07.690 - INFO: DEBUG: act = null
+2025-05-29 00:34:07.691 - INFO: vkd_sumberdata: SEMUA
+2025-05-29 00:34:07.691 - INFO: vtahun: 2025
+2025-05-29 00:34:08.255 - INFO: DEBUG: act = null
+2025-05-29 00:34:08.256 - INFO: vkd_sumberdata: SEMUA
+2025-05-29 00:34:08.256 - INFO: vtahun: 2025
+2025-05-29 00:34:10.226 - INFO: DEBUG: act = null
+2025-05-29 00:34:10.226 - INFO: vkd_sumberdata: SEMUA
+2025-05-29 00:34:10.227 - INFO: vtahun: 2025
+2025-05-29 00:34:11.035 - INFO: DEBUG: act = null
+2025-05-29 00:34:11.036 - INFO: vkd_sumberdata: SEMUA
+2025-05-29 00:34:11.036 - INFO: vtahun: 2025
+2025-05-29 00:34:13.553 - INFO: DEBUG: act = null
+2025-05-29 00:34:13.554 - INFO: vkd_sumberdata: SEMUA
+2025-05-29 00:34:13.555 - INFO: vtahun: 2025
+2025-05-29 01:03:10.732 - INFO: DEBUG: act = handleGetJenisLaporan
+2025-05-29 01:03:10.733 - INFO: DEBUG: act = handleGetsumberdata
+2025-05-29 01:03:10.747 - INFO: DEBUG: act = null
+2025-05-29 01:03:10.748 - INFO: vkd_sumberdata: 
+2025-05-29 01:03:10.749 - INFO: vtahun: 2025
+2025-05-29 17:25:57.973 - INFO: DEBUG: act = handleGetJenisLaporan
+2025-05-29 17:25:57.976 - INFO: DEBUG: act = null
+2025-05-29 17:25:57.973 - INFO: DEBUG: act = handleGetsumberdata
+2025-05-29 17:25:57.989 - INFO: vkd_sumberdata: 
+2025-05-29 17:25:57.998 - INFO: vtahun: 2025
+2025-05-29 17:28:20.723 - INFO: DEBUG: act = handleGetJenisLaporan
+2025-05-29 17:28:20.723 - INFO: DEBUG: act = handleGetsumberdata
+2025-05-29 17:28:20.739 - INFO: DEBUG: act = null
+2025-05-29 17:28:20.740 - INFO: vkd_sumberdata: 
+2025-05-29 17:28:20.740 - INFO: vtahun: 2025
+2025-05-29 17:31:03.979 - INFO: DEBUG: act = handleGetsumberdata
+2025-05-29 17:31:03.982 - INFO: DEBUG: act = null
+2025-05-29 17:31:03.979 - INFO: DEBUG: act = handleGetJenisLaporan
+2025-05-29 17:31:03.995 - INFO: vkd_sumberdata: 
+2025-05-29 17:31:03.996 - INFO: vtahun: 2025

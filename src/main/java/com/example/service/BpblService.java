@@ -87,6 +87,7 @@ public class BpblService {
                     row.put("UNITUP", rs.getString("UNITUP"));
                     row.put("NAMA_UNITUP", rs.getString("NAMA_UNITUP"));
                     row.put("STATUS_UPLOAD", rs.getString("STATUS_UPLOAD"));
+                    row.put("STATUS_DATA", rs.getString("STATUS_DATA"));
                     row.put("USER_ID", rs.getString("USER_ID"));
                     row.put("TGL_UPLOAD", rs.getString("TGL_UPLOAD"));
                     row.put("NAMA_FILE_UPLOAD", rs.getString("NAMA_FILE_UPLOAD"));
@@ -106,6 +107,7 @@ public class BpblService {
                     row.put("USERID_VERIFIKASI", rs.getString("USERID_VERIFIKASI"));
                     row.put("STATUS_VERIFIKASI", rs.getString("STATUS_VERIFIKASI"));
                     row.put("TGL_VERIFIKASI", rs.getString("TGL_VERIFIKASI"));
+                    row.put("STATUS_CUTOFF", rs.getString("STATUS_CUTOFF"));
                     row.put("ROW_NUMBER", rs.getString("ROW_NUMBER"));
                     // Tambahkan kolom lain jika diperlukan
                     result.add(row);

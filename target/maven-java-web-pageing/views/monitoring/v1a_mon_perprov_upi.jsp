@@ -19,7 +19,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <!-- <th>TOTAL_COUNT</th>  -->
+                            <th>TOTAL_COUNT</th> 
                             <th>DATA</th> 
                             <th>ID_KOLEKTIF</th> 
                             <th>IDURUT_BPBL</th> 
@@ -51,6 +51,7 @@
                             <th>UNITUP</th> 
                             <th>NAMA_UNITUP</th> 
                             <th>STATUS_UPLOAD</th> 
+                            <th>STATUS_DATA</th> 
                             <th>USER_ID</th> 
                             <th>TGL_UPLOAD</th> 
                             <th>NAMA_FILE_UPLOAD</th> 
@@ -70,7 +71,8 @@
                             <th>USERID_VERIFIKASI</th> 
                             <th>STATUS_VERIFIKASI</th> 
                             <th>TGL_VERIFIKASI</th> 
-                            <!-- <th>ROW_NUMBER</th>  -->
+                            <th>STATUS_CUTOFF</th> 
+                            <th>ROW_NUMBER</th> 
                         </tr>
                     </thead>
                 </table>
@@ -232,6 +234,7 @@
             ajax: {
                 url: '<%= request.getContextPath() %>/monperprovperupi',
                 type: 'POST',
+                timeout: 10000, // 20 detik
                 data: function (d) {
                     d.vkd_sumberdata = $('#selectsumberdata').val();
                     d.vtahun         = $('#selectTahun').val();
@@ -244,6 +247,12 @@
                     console.error('Status:', xhr.status);
                     console.error('Error thrown:', error);
                     console.error('Response:', xhr.responseText);
+
+                    if (error === 'timeout') {
+                        alert('Permintaan data melebihi waktu tunggu 10 detik. Silakan periksa koneksi atau coba lagi nanti.');
+                    } else {
+                        alert('Terjadi kesalahan saat memuat data: ' + error);
+                    }
                 }
             },
             columns: [
@@ -383,7 +392,7 @@
                                 }
                             },
                             ...[
-                                // "TOTAL_COUNT", 
+                                "TOTAL_COUNT", 
                                 "DATA", 
                                 "ID_KOLEKTIF", 
                                 "IDURUT_BPBL", 
@@ -415,6 +424,7 @@
                                 "UNITUP", 
                                 "NAMA_UNITUP", 
                                 "STATUS_UPLOAD", 
+                                "STATUS_DATA", 
                                 "USER_ID", 
                                 "TGL_UPLOAD", 
                                 "NAMA_FILE_UPLOAD", 
@@ -434,7 +444,8 @@
                                 "USERID_VERIFIKASI", 
                                 "STATUS_VERIFIKASI", 
                                 "TGL_VERIFIKASI", 
-                                // "ROW_NUMBER"
+                                "STATUS_CUTOFF", 
+                                "ROW_NUMBER", 
                             ].map(field => ({
                                 data: field,
                                 defaultContent: '-',
@@ -500,7 +511,7 @@
                 const allData = json.data || [];
 
                 const headers = {
-                    // 'TOTAL_COUNT': '',
+                    'TOTAL_COUNT': '',
                     'DATA': '',
                     'ID_KOLEKTIF': '',
                     'IDURUT_BPBL': '',
@@ -532,6 +543,7 @@
                     'UNITUP': '',
                     'NAMA_UNITUP': '',
                     'STATUS_UPLOAD': '',
+                    'STATUS_DATA': '',
                     'USER_ID': '',
                     'TGL_UPLOAD': '',
                     'NAMA_FILE_UPLOAD': '',
@@ -551,7 +563,8 @@
                     'USERID_VERIFIKASI': '',
                     'STATUS_VERIFIKASI': '',
                     'TGL_VERIFIKASI': '',
-                    // 'ROW_NUMBER': ''
+                    'STATUS_CUTOFF': '',
+                    'ROW_NUMBER': ''
                 };
 
                 const formattedData = allData.length > 0
