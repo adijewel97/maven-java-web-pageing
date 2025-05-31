@@ -129,7 +129,8 @@ public class BpblController extends HttpServlet {
             "NAMA_UNITAP", 
             "UNITUP", 
             "NAMA_UNITUP", 
-            "STATUS", 
+            "STATUS_UPLOAD", 
+            "STATUS_DATA", 
             "USER_ID", 
             "TGL_UPLOAD", 
             "NAMA_FILE_UPLOAD", 
@@ -146,10 +147,12 @@ public class BpblController extends HttpServlet {
             "USERID_KOREKSI", 
             "NAMA_FILE_KOREKSI", 
             "PATH_FILE_KOREKSI", 
-            "ROW_NUMBER", 
             "USERID_VERIFIKASI", 
             "STATUS_VERIFIKASI", 
-            "TGL_VERIFIKASI"
+            "TGL_VERIFIKASI", 
+            "STATUS_KIRIM", 
+            "STATUS_CUTOFF", 
+            "ROW_NUMBER", 
         };
 
         // Default orderBy sesuai voption

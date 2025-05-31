@@ -153,14 +153,14 @@ public class MonPerProvPerUpiController extends HttpServlet {
         }
     }
 
-    private int parseTotalCount(Object totalCountObj, int fallback) {
-        if (totalCountObj instanceof Number) {
-            return ((Number) totalCountObj).intValue();
-        } else if (totalCountObj != null) {
-            try {
-                return Integer.parseInt(totalCountObj.toString());
-            } catch (NumberFormatException ignored) {}
-        }
-        return fallback;
-    }
+    // private int parseTotalCount(Object totalCountObj, int fallback) {
+    //     if (totalCountObj instanceof Number) {
+    //         return ((Number) totalCountObj).intValue();
+    //     } else if (totalCountObj != null) {
+    //         try {
+    //             return Integer.parseInt(totalCountObj.toString());
+    //         } catch (NumberFormatException ignored) {}
+    //     }
+    //     return fallback;
+    // }
 }

@@ -1,0 +1,6 @@
+127.0.0.1 - - [01/Jun/2025:00:14:56 +0700] "GET /index.jsp?page=/views/monitoring/v1a_mon_perprov_upi.jsp&menu=monitoring-prov-upi HTTP/1.1" 200 31195 http-bio-8080-exec-9 35
+127.0.0.1 - - [01/Jun/2025:00:14:56 +0700] "GET /assets/css/style.css HTTP/1.1" 200 1461 http-bio-8080-exec-9 14
+127.0.0.1 - - [01/Jun/2025:00:14:57 +0700] "GET /favicon.ico HTTP/1.1" 200 68175 http-bio-8080-exec-9 5
+127.0.0.1 - - [01/Jun/2025:00:15:18 +0700] "POST /monperprovperupi HTTP/1.1" 200 207 http-bio-8080-exec-7 21049
+127.0.0.1 - - [01/Jun/2025:00:15:18 +0700] "POST /monperprovperupi?act=handleGetsumberdata HTTP/1.1" 200 144 http-bio-8080-exec-5 21069
+127.0.0.1 - - [01/Jun/2025:00:15:18 +0700] "POST /monperprovperupi?act=handleGetJenisLaporan HTTP/1.1" 200 144 http-bio-8080-exec-1 21083

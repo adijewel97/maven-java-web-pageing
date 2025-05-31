@@ -80,18 +80,28 @@
             min-height: 100vh;
             background-color: #2d2d2d;
         }
+
+        /* .sidebar-header .logo img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            padding: .1px;
+        } */
     </style>
 </head>
 <body>
-<div class="wrapper d-flex flex-column vh-100">
-    <div class="flex-grow-1 d-flex">
+<div class="wrapper">
+    <!-- Top bar bisa diletakkan di sini jika ada -->
+
+    <div class="main-content">
         <!-- Sidebar -->
-        <nav class="sidebar bg-dark text-white p-3" style="width: 280px;">           
+        <nav class="sidebar p-3">
             <jsp:include page="/views/templates/sidebar.jsp" />
         </nav>
 
-        <!-- Konten Scrollable -->
-        <main class="content-area flex-grow-1 overflow-auto p-3 bg-light">
+        <!-- Konten scrollable -->
+        <main class="content-area">
             <jsp:include page="<%= currentPage %>" />
         </main>
     </div>

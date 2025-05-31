@@ -71,6 +71,7 @@
                             <th>USERID_VERIFIKASI</th> 
                             <th>STATUS_VERIFIKASI</th> 
                             <th>TGL_VERIFIKASI</th> 
+                            <th>STATUS_KIRIM</th> 
                             <th>STATUS_CUTOFF</th> 
                             <!-- <th>ROW_NUMBER</th>  -->
                         </tr>
@@ -444,6 +445,7 @@
                                 "USERID_VERIFIKASI", 
                                 "STATUS_VERIFIKASI", 
                                 "TGL_VERIFIKASI", 
+                                "STATUS_KIRIM", 
                                 "STATUS_CUTOFF", 
                                 // "ROW_NUMBER", 
                             ].map(field => ({
@@ -564,6 +566,7 @@
                     'USERID_VERIFIKASI': '',
                     'STATUS_VERIFIKASI': '',
                     'TGL_VERIFIKASI': '',
+                    "STATUS_KIRIM": '', 
                     'STATUS_CUTOFF': '',
                     // 'ROW_NUMBER': ''
                 };

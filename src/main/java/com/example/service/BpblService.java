@@ -107,6 +107,7 @@ public class BpblService {
                     row.put("USERID_VERIFIKASI", rs.getString("USERID_VERIFIKASI"));
                     row.put("STATUS_VERIFIKASI", rs.getString("STATUS_VERIFIKASI"));
                     row.put("TGL_VERIFIKASI", rs.getString("TGL_VERIFIKASI"));
+                    row.put("STATUS_KIRIM", rs.getString("STATUS_KIRIM"));
                     row.put("STATUS_CUTOFF", rs.getString("STATUS_CUTOFF"));
                     row.put("ROW_NUMBER", rs.getString("ROW_NUMBER"));
                     // Tambahkan kolom lain jika diperlukan

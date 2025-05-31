@@ -1,3 +1,11 @@
+<!-- <div class="sidebar-header">
+    <div class="logo">
+        <a href="/bpbl/dashboard">
+             <img src="/assets/images/logo-BPBL.png" alt="logo">
+        </a>
+    </div>
+</div> -->
+
 <a class="nav-link <%= "dashboard".equals(request.getParameter("menu")) || request.getParameter("menu") == null ? "active" : "" %>"
    href="index.jsp?page=/views/dashboard/dashboard.jsp&menu=dashboard">
     <i class="bi bi-speedometer2 me-2"></i> Dashboard
